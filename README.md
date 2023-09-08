@@ -30,7 +30,7 @@
 * `finetuning.py` - основной скрипт, в котором происходит предобратка данных и обучение модели;
 * `train.sh` - скрипт для запуска процесса файнтюнинга на кластере с использованием менеджера очередей **slurm**.
 
-Для запуска необходимо: скачать [сообщения, преобразованные в **csv** формат](https://drive.google.com/drive/folders/1daAB6NxtnodAn73OLhEeHZJLPbJ3Ztez?usp=sharing), и поместить их в папку [`output_data`](/finetuning/output_data). 
+Для запуска необходимо: скачать [сообщения, преобразованные в **csv** формат](https://drive.google.com/drive/folders/1daAB6NxtnodAn73OLhEeHZJLPbJ3Ztez?usp=sharing), и поместить их в папку [output_data](/finetuning/output_data). 
 Затем заполнить `config.py` нужными параметрами и запустить установку зависимостей и скрипт вручную:
 ```bash
 python3 -m pip install -r requierements.txt && python3 finetuning.py
