@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  bot:
+    build:
+      context: ./bot
+      args:
+        - BOT_TOKEN=${BOT_TOKEN}
+    restart: always
+    networks:
+      - system_network
+    depends_on:
+      - db
+
+  model_server:
+    container_name: dialogpt_server
+    build: ./model_server
+    ports:
+      - "80:80"
+    restart: always
+    networks:
+      - system_network
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13.3
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: "user_context"
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - system_network
+
+networks:
+  system_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
